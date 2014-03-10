@@ -9,4 +9,11 @@ public class MyVector extends Matrix {
     public MyVector(int n){
         super(n,1);
     }
+    public double DotProduct(MyVector v){
+        if (v.GetRows()!=rows){
+            System.out.println("can't take dot product of different size vectors");
+            return 0;
+        }
+        return RMult(v.Transpose()).Get(1,1);
+    }
 }

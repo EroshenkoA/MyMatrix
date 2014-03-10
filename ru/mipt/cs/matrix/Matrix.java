@@ -8,11 +8,12 @@ import java.util.Scanner;
 public class Matrix {
     protected int rows;
     protected int columns;
+    protected double determinant;
     protected double elements[][];
     private class Pair{
-        int x;
-        int y;
-        Pair(int a, int b){
+        double x;
+        double y;
+        Pair(double a, double b){
             x=a;
             y=b;
         }
@@ -24,6 +25,9 @@ public class Matrix {
         this.rows=rows;
         this.columns=columns;
         elements=new double[rows][columns];
+        if (columns==rows){
+            determinant=1;
+        }
     }
     public double Get(int i, int j){
         if ((i>0)&&(i<=rows)&&(j>=0)&&(j<=columns)){
@@ -95,6 +99,7 @@ public class Matrix {
                 elements[i][k]=elements[j][k];
                 elements[j][k]=s;
             }
+            determinant*=-1;
         }
     }
     private void Step(int k,int m){//elements[k][m] must be nonzero
@@ -143,8 +148,8 @@ public class Matrix {
         Pair p=new Pair(0,0);
 
         if ((p=FindFirstNonzero(i,j)).y!=-2){
-            Step(p.x,p.y);
-            Descend(p.x+1,p.y+1);
+            Step((int)p.x,(int)p.y);
+            Descend((int)p.x+1,(int)p.y+1);
         }
     }
     public void Copy(Matrix M){
@@ -159,11 +164,20 @@ public class Matrix {
         }
     }
     public Matrix Gauss(){
-        Double c;
         Matrix M=new Matrix(rows,columns);
         M.Copy(this);
         M.Descend(0, 0);
+        for (int i=1; i<=Math.min(rows,columns); i++){
+            M.determinant*=M.Get(i,i);
+        }
         return M;
+    }
+    public double Det(){
+        if (rows!=columns){
+            System.out.println("rows!=columns, can't take determinant");
+            return 0;
+        }
+        return Gauss().determinant;
     }
     public void PrintConsole(){
         int i=1; int j=1;
