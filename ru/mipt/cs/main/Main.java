@@ -1,5 +1,6 @@
 package ru.mipt.cs.main;
 
+import ru.mipt.cs.matrix.Dialog;
 import ru.mipt.cs.matrix.Matrix;
 import ru.mipt.cs.matrix.sub.Geom.GeomVector;
 
@@ -8,7 +9,8 @@ import ru.mipt.cs.matrix.sub.Geom.GeomVector;
  */
 public class Main {
     public static void main(String args[]){
-        Matrix M1=new Matrix(3,3);
+        Dialog d=new Dialog(5,5);
+       /* Matrix M1=new Matrix(3,3);
         M1.ConsoleSet();
         M1.PrintConsole();
         Matrix M2=new Matrix(3,3);
@@ -22,6 +24,6 @@ public class Main {
         System.out.println("det is " + M1.Det());
         GeomVector V1=new GeomVector(1,0,0);
         GeomVector V2=new GeomVector(0,1,0);
-        V1.CrossProduct(V2).PrintConsole();
+        V1.CrossProduct(V2).PrintConsole();*/
     }
 }

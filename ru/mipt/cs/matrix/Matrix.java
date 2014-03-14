@@ -1,5 +1,8 @@
 package ru.mipt.cs.matrix;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -18,7 +21,9 @@ public class Matrix {
             y=b;
         }
     }
-    public Matrix(int rows,int columns){
+    public Matrix(){
+    }
+    public void SetMatrix(int rows,int columns){
         if ((rows<1)||(columns<1)) {
             System.out.println("number of rows and columns must be positive integer");
         }
@@ -28,6 +33,9 @@ public class Matrix {
         if (columns==rows){
             determinant=1;
         }
+    }
+    public Matrix(int rows,int columns){
+       SetMatrix(rows,columns);
     }
     public double Get(int i, int j){
         if ((i>0)&&(i<=rows)&&(j>=0)&&(j<=columns)){
@@ -204,4 +212,48 @@ public class Matrix {
             i++;
         }
     }
+    private int CountSpace(String s){
+        int t=0;
+        for(int i=0; i < s.length(); i++) {
+            if(s.charAt(i) == ' ') {
+                t++;
+                if ((i>0)&&(s.charAt(i-1)==' ')){
+                    t--;
+                }//count result from "asd asdsd         asdasd" must be 2
+            }
+        }
+        return t;
+    }
+    public void FileSet(){//not ready
+        try {
+            FileInputStream fileStream = new FileInputStream("test.txt");
+            Scanner scanner = new Scanner(fileStream);
+            ArrayList <String> lines = new ArrayList();
+            int t=0;
+            int s=0;
+            int i=0;
+            while (scanner.hasNextLine()) {
+                lines.add(scanner.nextLine());
+                if (i==0) {
+                    t=CountSpace(lines.get(0));
+                }else{
+                    if (CountSpace(lines.get(i))!=t){
+                        System.out.println("file matrix is disproportional");
+                    }
+                }
+                i++;
+            }
+            int j=0;
+            int k=0;
+            this.SetMatrix(i,t+1);
+            for (j=0;j<i;j++){
+                for (k=0; k<t+1; k++){
+                    Set(j+1,k+1,1);//////////////////////////here is the place, i can't read double from string
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
