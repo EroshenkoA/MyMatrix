@@ -15,13 +15,13 @@ public class GeomVector extends MyVector {
         elements[1][0]=y;
         elements[2][0]=z;
     }
-    public void Setx(double x){
+    public void setx(double x){
         elements[0][0]=x;
     }
-    public void Sety(double x){
+    public void sety(double x){
         elements[1][0]=x;
     }
-    public void Setz(double x){
+    public void setz(double x){
         elements[2][0]=x;
     }
     public double x(){
@@ -33,7 +33,7 @@ public class GeomVector extends MyVector {
     public double z(){
         return elements[2][0];
     }
-    public GeomVector CrossProduct(GeomVector v){
+    public GeomVector crossProduct(GeomVector v){
         GeomVector vector=new GeomVector(elements[1][0]*v.z()-elements[2][0]*v.y(),
                 v.x()*elements[2][0]-v.z()*elements[0][0], elements[0][0]*v.y()-elements[1][0]*v.x());
         return vector;

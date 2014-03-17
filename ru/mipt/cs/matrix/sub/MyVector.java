@@ -10,11 +10,12 @@ public class MyVector extends Matrix {
         super(n,1);
     }
     // AP: методы называются с маленькой буквы!
-    public double DotProduct(MyVector v){
-        if (v.GetRows()!=rows){
+    //Done
+    public double dotProduct(MyVector v){
+        if (v.getRows()!=rows){
             System.out.println("can't take dot product of different size vectors");
             return 0;
         }
-        return RMult(v.Transpose()).Get(1,1);
+        return rMult(v.transpose()).get(1, 1);
     }
 }
