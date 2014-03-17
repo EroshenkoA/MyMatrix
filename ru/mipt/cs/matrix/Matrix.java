@@ -224,6 +224,7 @@ public class Matrix {
         }
         return t;
     }
+    // AP: про файлы матрице знать не зачем - это лучше в лргой класс вынести
     public void FileSet(){//not ready
         try {
             FileInputStream fileStream = new FileInputStream("test.txt");
